@@ -1,0 +1,16 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Robbo\\Skeleton\\": "src/"
+        }
+    },
+    "require": {
+        "robclancy/xf-support": "dev-master"
+    },
+    "require-dev": {
+        "raveren/kint": "dev-master",
+        "robclancy/xf-sync": "dev-master",
+        "robclancy/xf-toolkit": "*"
+    },
+    "minimum-stability": "dev"
+}

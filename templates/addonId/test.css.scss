@@ -1,0 +1,864 @@
+<xen:include template="xenforo_reset.css" />
+
+/*
+ * XenForo Core CSS
+ *
+ */
+
+html
+{
+    @property "html";
+    background-color: @pageBackground;
+    @property "/html";
+    overflow-y: scroll !important;
+}
+
+body
+{
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+
+    @property "body";
+    font-family: 'Trebuchet MS', Helvetica, Arial, sans-serif;
+    color: @contentText;
+    word-wrap: break-word;
+    line-height: 1.28;
+    @property "/body";
+}
+
+/* counteract the word-wrap setting in 'body' */
+pre, textarea
+{
+    word-wrap: normal;
+}
+
+a:link,
+a:visited
+{
+    @property "link";
+    color: @primaryMedium;
+    text-decoration: none;
+    @property "/link";
+}
+
+    a[href]:hover
+    {
+        @property "linkHover";
+        text-decoration: underline;
+        @property "/linkHover";
+    }
+    
+    a:hover
+    {
+        _text-decoration: underline;
+    }
+    
+    a.noOutline
+    {
+        outline: 0 none;
+    }
+    
+    .emCtrl,
+    .messageContent a
+    {
+        border-radius: 5px;
+    }
+    
+        .emCtrl:hover,
+        .emCtrl:focus,
+        .ugc a:hover,
+        .ugc a:focus
+        {
+            /*position: relative;
+            top: -1px;*/
+            text-decoration: none;
+            box-shadow: 5px 5px 7px #CCCCCC;
+            outline: 0 none;
+        }
+        
+            .emCtrl:active,
+            .ugc a:active
+            {
+                position: relative;
+                top: 1px;
+                box-shadow: 2px 2px 7px #CCCCCC;
+                outline: 0 none;
+            }
+
+    .ugc a:link,
+    .ugc a:visited
+    {
+        @property "ugcLink";
+        padding: 0 3px;
+        margin: 0 -3px;
+        border-radius: 5px;
+        @property "/ugcLink";
+    }
+    
+        .ugc a:hover,
+        .ugc a:focus
+        {
+            @property "ugcLinkHover";
+            color: @secondaryDarker;
+            background: @secondaryLightest url('@imagePath/xenforo/gradients/category-23px-light.png') repeat-x top;
+            @property "/ugcLinkHover";
+        }
+        
+img.mceSmilie,
+img.mceSmilieSprite
+{
+    vertical-align: text-bottom;
+    margin: 0 1px;
+}
+        
+/** title bar **/
+
+.titleBar
+{
+    margin-bottom: 10px;
+}
+
+{xen:helper clearfix, '.titleBar'}
+
+.titleBar h1
+{
+    @property "h1";
+    font-size: 18pt;
+    overflow: hidden;
+    zoom: 1;
+    @property "/h1";
+}
+
+    .titleBar h1 em
+    {
+        color: @dimmedTextColor;
+    }
+        
+    .titleBar h1 .Popup
+    {
+        float: left;
+    }
+
+#pageDescription
+{
+    @property "pageDescription";
+    font-size: 11px;
+    color: @mutedTextColor;
+    margin-top: 2px;
+    @property "/pageDescription";
+}
+
+.topCtrl
+{
+    float: right;
+}
+    
+    .topCtrl h2
+    {
+        font-size: 12pt;
+    }
+        
+/** images **/
+
+img
+{
+    -ms-interpolation-mode: bicubic;
+}
+
+a.avatar 
+{ 
+    *cursor: pointer; /* IE7 refuses to do this */ 
+} 
+
+.avatar img,
+.avatar .img,
+.avatarCropper
+{
+    @property "avatar";
+    background-color: @contentBackground;
+    padding: 2px;
+    border: 1px solid @primaryLighter;
+    border-radius: 4px;
+    @property "/avatar";
+}
+
+.avatar.plainImage img,
+.avatar.plainImage .img
+{
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    background-position: left top;
+}
+
+    .avatar .img
+    {
+        display: block;
+        background-repeat: no-repeat;
+        background-position: 2px 2px;
+        text-indent: 1000px;
+        overflow: hidden;
+        white-space: nowrap;
+        word-wrap: normal;
+    }
+
+    .avatar .img.s { width: 48px;  height: 48px;  }
+    .avatar .img.m { width: 96px;  height: 96px;  }
+    .avatar .img.l { width: 192px; height: 192px; }
+
+.avatarCropper
+{
+    width: 192px;
+    height: 192px;
+    direction: ltr;
+}
+
+.avatarCropper a,
+.avatarCropper span,
+.avatarCropper label
+{
+    overflow: hidden;
+    position: relative;
+    display: block;
+    width: 192px;
+    height: 192px;
+}
+
+.avatarCropper img
+{
+    padding: 0;
+    border: none;
+    border-radius: 0;
+
+    position: relative;
+    display: block;
+}
+
+.avatarScaler img
+{
+    max-width: 192px;
+    _width: 192px;
+}
+
+/* ***************************** */
+
+body .dimmed, body a.dimmed, body .dimmed a { color: @dimmedTextColor; }
+body .muted, body a.muted, body .muted a { color: @mutedTextColor; }
+body .faint, body a.faint, body .faint a { color: @faintTextColor; }
+
+.highlight { font-weight: bold; }
+
+.concealed,
+.concealed a,
+.cloaked,
+.cloaked a
+{
+    text-decoration: inherit !important;
+    color: inherit !important;
+    *clear:expression( style.color = parentNode.currentStyle.color, style.clear = "none", 0);
+}
+
+a.concealed:hover,
+.concealed a:hover
+{
+    text-decoration: underline !important;
+}
+
+/* ***************************** */
+
+.xenTooltip
+{
+    @property "tooltip";
+    font-size: 11px;
+    color: rgb(255, 255, 255);
+    background-color: @tooltipBackground;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: none;
+    z-index: 15000;
+    cursor: default;
+    @property "/tooltip";
+}
+
+.xenTooltip a,
+.xenTooltip a:hover
+{
+    color: @tooltip.color;
+    text-decoration: underline;
+}
+
+    .xenTooltip .arrow
+    {
+        @property "tooltipArrow";
+        border-top: 6px solid @tooltipBackground;
+        border-right: 6px solid transparent;
+        border-bottom: 1px none black;
+        border-left: 6px solid transparent;
+        position: absolute;
+        bottom: -6px;
+        line-height: 0px;
+        width: 0px;
+        height: 0px;
+        @property "/tooltipArrow";
+        left: {xen:calc '@tooltipArrow.border-top-width + 3'}px;
+        
+        /* Hide from IE6 */
+        _display: none;
+    }
+
+    .xenTooltip.flipped .arrow
+    {
+        left: auto;
+        right: {xen:calc '@tooltipArrow.border-top-width + 3'}px;
+    }
+
+.xenTooltip.statusTip
+{
+    /* Generated by XenForo.StatusTooltip JavaScript */
+    @property "statusTooltip";
+    padding: 5px 10px;
+    line-height: 17px;
+    width: 250px;
+    height: auto;
+    @property "/statusTooltip";
+}
+
+    .xenTooltip.statusTip .arrow
+    {
+        @property "statusTooltipArrow";
+        border: 6px solid transparent;
+        border-right-color: @tooltipBackground;
+        border-left: 1px none black;
+        top: 6px;
+        left: -6px;
+        bottom: auto;
+        right: auto;
+        @property "/statusTooltipArrow";
+    }
+            
+.xenTooltip.iconTip { margin-left: -6px; }
+.xenTooltip.iconTip.flipped { margin-left: 7px; }
+
+/* ***************************** */
+
+#PreviewTooltip
+{
+    display: none;
+}
+
+.xenPreviewTooltip
+{
+    @property "previewTooltip";
+    border: 10px solid @primaryDarker;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 12px 25px rgba(0,0,0, 0.5);
+    width: 400px;
+    @property "/previewTooltip";
+    
+    display: none;  
+    z-index: 15000;
+    cursor: default;
+    
+    border-color: {xen:helper rgba, @previewTooltip.border-color, 0.5};
+}
+
+    .xenPreviewTooltip .arrow
+    {
+        @property "previewTooltipArrowOuter";
+        border-top: 15px solid rgba(3,42,70, 0.25);
+        border-right: 15px solid transparent;
+        border-bottom: 1px none black;
+        border-left: 15px solid transparent;
+        position: absolute;
+        bottom: -15px;
+        left: 22px;
+        @property "/previewTooltipArrowOuter";
+        
+        _display: none;
+    }
+    
+        .xenPreviewTooltip .arrow span
+        {
+            @property "previewTooltipArrowInner";
+            border-top: 15px solid @primaryContent.background-color;
+            border-right: 15px solid transparent;
+            border-bottom: 1px none black;
+            border-left: 15px solid transparent;
+            position: absolute;
+            top: -17px;
+            left: -15px;
+            @property "/previewTooltipArrowInner";
+        }
+
+    .xenPreviewTooltip .section,
+    .xenPreviewTooltip .sectionMain,
+    .xenPreviewTooltip .primaryContent,
+    .xenPreviewTooltip .secondaryContent
+    {
+        margin: 0;
+    }
+    
+        .xenPreviewTooltip .previewContent
+        {
+            overflow: hidden; zoom: 1;
+            min-height: 1em;
+        }
+
+/* ***************************** */
+
+.importantMessage
+{
+    margin: 10px 0;
+    color: @secondaryDarker;
+    background-color: @secondaryLightest;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px @secondaryLight;
+}
+
+.importantMessage a
+{
+    font-weight: bold;
+    color: @secondaryDarker;
+}
+
+
+
+/* ***************************** */
+
+<xen:include template="xenforo_sections.css" />
+
+<xen:include template="xenforo_columns.css" />
+
+<xen:include template="xenforo_tabs.css" />
+
+<xen:include template="xenforo_popup.css" />
+
+<xen:include template="xenforo_overlay.css" />
+
+<xen:include template="xenforo_alert.css" />
+
+<xen:include template="xenforo_data_table.css" />
+
+<xen:include template="xenforo_member_list_item.css" />
+
+<xen:include template="xenforo_dismiss.css" />
+
+<xen:include template="xenforo_basehtml.css" />
+
+<xen:include template="page_nav.css" />
+
+/* ***************************** */
+/* DL Name-Value Pairs */
+
+.pairs dt,
+.pairsInline dt,
+.pairsRows dt,
+.pairsColumns dt,
+.pairsJustified dt
+{
+    color: @mutedTextColor;
+}
+
+.pairsRows,
+.pairsColumns,
+.pairsJustified
+{
+    line-height: 1.5;
+}
+
+.pairsInline dl,
+.pairsInline dt,
+.pairsInline dd
+{
+    display: inline;
+}
+
+.pairsRows dt,
+.pairsRows dd
+{
+    display: inline-block;
+    vertical-align: top;
+
+    *display: inline;
+    *margin-right: 1ex;
+    *zoom: 1;
+}
+
+dl.pairsColumns,
+dl.pairsJustified,
+.pairsColumns dl,
+.pairsJustified dl
+{
+    overflow: hidden; zoom: 1;
+}
+
+.pairsColumns dt,
+.pairsColumns dd
+{
+    float: left;
+    width: 48%;
+}
+
+.pairsJustified dt
+{
+    float: left;
+    max-width: 100%;
+    margin-right: 5px;
+}
+.pairsJustified dd
+{
+    float: right;
+    text-align: right;
+    max-width: 100%
+}
+
+
+/* ***************************** */
+/* Lists that put all elements on a single line */
+
+.listInline ul,
+.listInline ol,
+.listInline li,
+.listInline dl,
+.listInline dt,
+.listInline dd
+{
+    display: inline;
+}
+
+/* intended for use with .listInline, produces 'a, b, c, d' / 'a * b * c * d' lists */
+
+.commaImplode li:after,
+.commaElements > *:after
+{
+    content: ', ';
+}
+
+.commaImplode li:last-child:after,
+.commaElements > *:last-child:after
+{
+    content: '';
+}
+
+.bulletImplode li:before
+{
+    content: '\2022\a0';
+}
+
+.bulletImplode li:first-child:before
+{
+    content: '';
+}
+
+/* Three column list display */
+
+.threeColumnList
+{
+    overflow: hidden; zoom: 1;
+}
+
+.threeColumnList li
+{
+    float: left;
+    width: 32%;
+    margin: 2px 1% 2px 0;
+}
+
+/* ***************************** */
+/* Preview tooltips (threads etc.) */
+
+.previewTooltip
+{
+}
+        
+    .previewTooltip .avatar
+    {
+        float: left;
+    }
+    
+    .previewTooltip .text
+    {
+        margin-left: 64px;
+    }
+    
+        .previewTooltip blockquote
+        {
+            @property "messageText";
+            font-size: 11pt;
+            font-family: Georgia, "Times New Roman", Times, serif;
+            line-height: 1.4;
+            @property "/messageText";
+            
+            font-size: 10pt;
+            max-height: 150px;
+            overflow: hidden;
+        }
+    
+        .previewTooltip .posterDate
+        {
+            font-size: 11px;
+            padding-top: 5px;
+            border-top: 1px solid @primaryLighterStill;
+            margin-top: 5px;
+        }
+
+/* ***************************** */
+/* List of block links */
+
+.blockLinksList
+{
+    @property "blockLinksList";
+    font-size: 11px;
+    padding: 2px;
+    @property "/blockLinksList";
+}
+        
+    .blockLinksList a,
+    .blockLinksList label
+    {
+        @property "blockLinksListItem";
+        color: @primaryMedium;
+        padding: 5px 10px;
+        border-radius: 5px;
+        display: block;
+        outline: 0 none;
+        @property "/blockLinksListItem";
+    }
+    
+        .blockLinksList a:hover,
+        .blockLinksList a:focus,
+        .blockLinksList li.kbSelect a,
+        .blockLinksList label:hover,
+        .blockLinksList label:focus,
+        .blockLinksList li.kbSelect label
+        {
+            @property "blockLinksListItemHover";
+            text-decoration: none;
+            background-color: @primaryLighterStill;
+            @property "/blockLinksListItemHover";
+        }
+        
+        .blockLinksList a:active,
+        .blockLinksList a.selected,
+        .blockLinksList label:active,
+        .blockLinksList label.selected
+        {
+            @property "blockLinksListItemActive";
+            color: @primaryDarker;
+            background-color: @primaryLighter;
+            @property "/blockLinksListItemActive";
+        }
+        
+        .blockLinksList a.selected,
+        .blockLinksList label.selected
+        {
+            @property "blockLinksListItemSelected";
+            font-weight: bold;
+            display: block;
+            @property "/blockLinksListItemSelected";
+        }
+        
+        .blockLinksList span.depthPad
+        {
+            display: block;
+        }
+
+.blockLinksList .itemCount
+{
+    @property "alertBalloon";
+    font-weight: bold;
+    font-size: 9px;
+    color: white;
+    background-color: #e03030;
+    padding: 0 2px;
+    border-radius: 2px;
+    position: absolute;
+    right: 2px;
+    top: -12px;
+    line-height: 16px;
+    min-width: 12px;
+    _width: 12px;
+    text-align: center;
+    text-shadow: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    box-shadow: 2px 2px 5px rgba(0,0,0, 0.25);
+    height: 16px;
+    @property "/alertBalloon";
+
+    float: right;
+    position: relative;
+    right: 0;
+    top: -1px;
+}
+
+    .blockLinksList .itemCount.Zero
+    {
+        display: none;
+    }
+
+/* ***************************** */
+/* Normally-indented nested lists */
+
+.indentList ul,
+.indentList ol
+{
+    margin-left: 2em;
+}
+
+/* ***************************** */
+/* AJAX progress image */
+
+.InProgress
+{
+    background: transparent url('@imagePath/xenforo/widgets/ajaxload.info_B4B4DC_facebook.gif') no-repeat right center;
+}
+
+/* ***************************** */
+/* Hidden inline upload iframe */
+
+.hiddenIframe
+{
+    display: block;
+    width: 500px;
+    height: 300px;
+}
+
+/* ***************************** */
+/* Exception display */
+
+.traceHtml { font-size:11px; font-family:calibri, verdana, arial, sans-serif; }
+.traceHtml .function { color:rgb(180,80,80); font-weight:normal; }
+.traceHtml .file { font-weight:normal; }
+.traceHtml .shade { color:rgb(128,128,128); }
+.traceHtml .link { font-weight:bold; }
+
+/* ***************************** */
+/* Indenting for options */
+
+._depth0 { padding-left:  0em; }
+._depth1 { padding-left:  2em; }
+._depth2 { padding-left:  4em; }
+._depth3 { padding-left:  6em; }
+._depth4 { padding-left:  8em; }
+._depth5 { padding-left: 10em; }
+._depth6 { padding-left: 12em; }
+._depth7 { padding-left: 14em; }
+._depth8 { padding-left: 16em; }
+._depth9 { padding-left: 18em; }
+
+<xen:include template="error.css" />
+
+/* Undo some nasties */
+
+input[type=search]
+{
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+}
+
+/* ignored content hiding */
+
+.ignored { display: none !important; }
+
+/* Misc */
+
+.floatLeft { float: left; }
+.floatRight { float: right; }
+
+/* Square-cropped thumbs */
+
+.SquareThumb
+{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+    direction: ltr;
+    
+    /* individual instances can override this size */
+    width: 48px;
+    height: 48px;
+}
+
+.SquareThumb img
+{
+    position: relative;
+    display: block;
+}
+
+<xen:include template="bb_code_base.css" />
+
+.visibleResponsiveFull { display: inherit !important; }
+
+.visibleResponsiveWide,
+.visibleResponsiveMedium,
+.visibleResponsiveNarrow { display: none !important; }
+
+.hiddenResponsiveFull { display: none !important; } 
+
+.hiddenResponsiveWide,
+.hiddenResponsiveMedium,
+.hiddenResponsiveNarrow { display: inherit !important; }
+
+<xen:if is="@enableResponsive">
+@media (max-width:@maxResponsiveWideWidth) {
+    .Responsive .visibleResponsiveFull { display: none !important; }
+    
+    .Responsive .hiddenResponsiveFull { display: inherit !important; }
+}
+
+@media (min-width:{xen:calc "@maxResponsiveMediumWidth + 1"}px) AND (max-width:@maxResponsiveWideWidth) {
+    .Responsive .visibleResponsiveWide { display: inherit !important; }
+    
+    .Responsive .hiddenResponsiveWide { display: none !important; }
+}
+
+@media (min-width:{xen:calc "@maxResponsiveNarrowWidth + 1"}px) AND (max-width:@maxResponsiveMediumWidth) {
+    .Responsive .visibleResponsiveMedium { display: inherit !important; }
+    
+    .Responsive .hiddenResponsiveMedium { display: none !important; }
+}
+
+@media (max-width:@maxResponsiveNarrowWidth) {  
+    .Responsive .visibleResponsiveNarrow { display: inherit !important; }
+    
+    .Responsive .hiddenResponsiveNarrow { display: none !important; }
+}
+
+@media (max-width:@maxResponsiveNarrowWidth) {
+    .Responsive .xenTooltip.statusTip
+    {
+        width: auto;
+    }
+    
+    .Responsive .xenPreviewTooltip
+    {
+        box-sizing: border-box;
+        width: auto;
+        max-width: 100%;
+    }
+    
+    .Responsive .xenPreviewTooltip .arrow
+    {
+        display: none;
+    }
+    
+    .Responsive .previewTooltip .avatar
+    {
+        display: none;
+    }
+    
+    .Responsive .previewTooltip .text
+    {
+        margin-left: 0;
+    }
+}
+</xen:if>
+
+<xen:hook name="xenforo_css_extra" />

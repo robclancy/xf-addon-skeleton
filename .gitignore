@@ -1,0 +1,9 @@
+composer.lock
+composer.phar
+.DS_Store
+Gemfile.lock
+/vendor
+/xenforo
+/generated
+.sass-cache
+*.komodoproject
