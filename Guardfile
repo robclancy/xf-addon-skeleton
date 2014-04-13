@@ -30,7 +30,9 @@ module ::Guard
       media_wrap = ['@media(max-width: 1337){ __property {content: \'', '\';}']
       
       paths.each do |path|
-        sass = File.open(path).read
+        sass_file = File.open path
+        sass = sass_file.read
+        sass_file.close
         
         # comment the properties in syntax like...
         #  @property "html";
@@ -86,7 +88,9 @@ module ::Guard
   }"]
       
       paths.each do |path|
-        css = File.open(path).read
+        css_file = File.open path
+        css = css_file.read
+        css_file.close
         
         css.gsub!(Regexp.new(Regexp.quote(comment_wrap[0])), '')
         css.gsub!(Regexp.new(Regexp.quote(comment_wrap[1])), '')
@@ -118,15 +122,14 @@ module ::Guard
       paths.each do |path|
         t = get_template_details path
         
-        `"xf template:create #{t[:name]}#{t[:addon_id].empty? ? '' : ' --addon-id='+t[:addon_id]}#{t[:admin] ? ' --admin' : ''} < #{path}"`
+        spawn "php vendor/robclancy/xf-toolkit/src/xf.php template:create #{t[:name]}#{t[:addon_id].empty? ? '' : ' --addon-id='+t[:addon_id]}#{t[:admin] ? ' --admin' : ''} --update-if-exists --file=#{path}"
       end
     end
-    
+
     def run_on_modifications(paths)
       paths.each do |path|
         t = get_template_details path
-        
-        `"xf template:update #{t[:name]}#{t[:addon_id].empty? ? '' : ' --addon-id='+t[:addon_id]}#{t[:admin] ? ' --admin' : ''} --create-if-not-exists < #{path}"`
+        spawn "php vendor/robclancy/xf-toolkit/src/xf.php  template:update #{t[:name]}#{t[:addon_id].empty? ? '' : ' --addon-id='+t[:addon_id]}#{t[:admin] ? ' --admin' : ''} --create-if-not-exists --file=#{path}"
       end
     end
     
@@ -134,7 +137,7 @@ module ::Guard
       paths.each do |path|
         t = get_template_details path
         
-        `"xf template:delete #{t[:name]}#{t[:admin] ? ' --admin' : ''}"`
+        spawn "php vendor/robclancy/xf-toolkit/src/xf.php  template:delete #{t[:name]}#{t[:admin] ? ' --admin' : ''}"
       end
     end
     
